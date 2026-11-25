@@ -4,7 +4,7 @@ import { Service } from '@angular/core';
  * Your GoatCounter site code, e.g. 'ebony' for https://ebony.goatcounter.com.
  * Sign up free at goatcounter.com, then set it here. While it's null, nothing loads.
  */
-export const GOATCOUNTER_CODE: string | null = null;
+export const GOATCOUNTER_CODE: string | null = 'ebony';
 
 interface GoatCounter {
   count(vars: { path: string; title?: string; event?: boolean }): void;
