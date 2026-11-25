@@ -1,0 +1,34 @@
+<header
+  class="titlebar"
+  (pointerdown)="startDrag($event)"
+  (pointermove)="drag($event)"
+  (pointerup)="endDrag()"
+  (pointercancel)="endDrag()"
+  (dblclick)="wm.toggleMaximize(win().id)"
+>
+  <app-pixel-icon [name]="def().icon" [size]="18" />
+  <h2 [id]="titleId()">{{ def().title }}</h2>
+  <div class="controls">
+    <button type="button" class="ctl" aria-label="Minimize" (click)="wm.minimize(win().id)">
+      <svg viewBox="0 0 8 7" aria-hidden="true"><rect x="1" y="5" width="6" height="2" /></svg>
+    </button>
+    <button
+      type="button"
+      class="ctl max-btn"
+      [attr.aria-label]="win().maximized ? 'Restore' : 'Maximize'"
+      (click)="wm.toggleMaximize(win().id)"
+    >
+      <svg viewBox="0 0 8 7" aria-hidden="true">
+        <path d="M0 0h8v7H0zM1 2v4h6V2z" fill-rule="evenodd" />
+      </svg>
+    </button>
+    <button type="button" class="ctl close" aria-label="Close" (click)="wm.close(win().id)">
+      <svg viewBox="0 0 8 7" aria-hidden="true">
+        <path d="M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0z" />
+      </svg>
+    </button>
+  </div>
+</header>
+<div class="body">
+  <ng-content />
+</div>

@@ -1,59 +1,27 @@
-# EbonyPortfolio
+# EbonyOS
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.3.0.
+My portfolio, built as a retro 90s desktop: draggable windows, a Start menu, a working terminal and
+Flop, a pink floppy-disk helper. I built it to learn Angular coming from React.
 
-## Development server
+Built with Angular 22: signals, `@for` / `@if` control flow, native `animate.enter` / `animate.leave`
+animations and standalone components. No UI library; the pixel icons are hand-drawn as strings in
+`src/app/os/pixel-icon.ts`.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Run it
 
 ```bash
-ng generate component component-name
+npm install
+npm start          # http://localhost:4300
+npm run build      # production build in dist/ebony-portfolio/browser
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Where things live
 
-```bash
-ng generate --help
-```
+| Path | What |
+|---|---|
+| `src/app/data/resume.ts` | All the words: profile, roles, projects, skills |
+| `src/app/os/` | The desktop: window manager, windows, taskbar, Start menu, boot screen, Flop |
+| `src/app/apps/` | What opens in each window: About, Experience, Projects, System, Terminal, Contact, Recycle bin |
+| `public/` | Photo (resume links show once `resumePdf` is set in `resume.ts`) |
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Try the terminal: `help`, `whoami`, `projects`, `open contact`, `hire`.

@@ -1,0 +1,85 @@
+<div class="address">
+  <span class="ui-label">Address</span>
+  <span class="path bevel-in">{{ path() }}</span>
+</div>
+
+<div class="split">
+  <nav class="tree bevel-in" aria-label="Experience">
+    <p class="branch"><app-pixel-icon name="folder" [size]="18" /> Keepers</p>
+    <ul>
+      @for (r of roles; track r.id) {
+        <li>
+          <button
+            type="button"
+            [attr.aria-current]="current() === r.id ? 'true' : null"
+            (click)="current.set(r.id)"
+          >
+            <app-pixel-icon [name]="r.id === 'cleaner-app' ? 'floppy' : 'computer'" [size]="18" />
+            {{ r.id === 'cleaner-app' ? 'Cleaner app' : 'Web app' }}
+          </button>
+        </li>
+      }
+    </ul>
+    <button
+      type="button"
+      class="branch"
+      [attr.aria-current]="current() === 'education' ? 'true' : null"
+      (click)="current.set('education')"
+    >
+      <app-pixel-icon name="folder" [size]="18" /> Education
+    </button>
+  </nav>
+
+  <article class="pane detail">
+    @if (role(); as r) {
+      <h3>{{ r.title }}</h3>
+      <p class="meta">{{ r.org }}, {{ r.dates }}</p>
+      <p class="stack">{{ r.stack }}</p>
+      <p class="summary">{{ r.summary }}</p>
+
+      <div class="stats">
+        @for (s of r.stats; track s.label) {
+          <div class="stat bevel-in">
+            <strong>{{ s.value }}</strong>
+            <span>{{ s.label }}</span>
+          </div>
+        }
+      </div>
+
+      @if (r.id === 'cleaner-app') {
+        <figure class="qa">
+          <figcaption>AI photo QA, clean rooms that pass review</figcaption>
+          <div class="meter">
+            <span class="ui-label">Before</span>
+            <div class="track bevel-in"><i [style.width.%]="qa.before"></i></div>
+            <span class="pct">{{ qa.before }}%</span>
+          </div>
+          <div class="meter">
+            <span class="ui-label">After</span>
+            <div class="track bevel-in"><i class="after" [style.width.%]="qa.after"></i></div>
+            <span class="pct">{{ qa.after }}%</span>
+          </div>
+          <p class="note">…while still blocking {{ qa.badBlocked }}% of bad photos.</p>
+        </figure>
+      }
+
+      <ul class="bullets">
+        @for (h of r.highlights; track h) {
+          <li>{{ h }}</li>
+        }
+      </ul>
+    } @else {
+      <h3>{{ edu.degree }}</h3>
+      <p class="meta">{{ edu.school }}, {{ edu.date }}</p>
+      <p class="summary">
+        Informatics with a cybersecurity concentration: network design, access control, ethical hacking and
+        Wireshark, alongside the software side. It's why RBAC and tenant checks are my favorite tickets.
+      </p>
+    }
+  </article>
+</div>
+
+<div class="statusbar">
+  <span class="bevel-in">{{ role() ? role()!.highlights.length + ' highlights' : '1 degree' }}</span>
+  <span class="bevel-in">Keepers, 2026</span>
+</div>

@@ -1,0 +1,33 @@
+.desktop {
+  position: fixed;
+  inset: 0 0 var(--taskbar-h) 0;
+  overflow: hidden;
+  /* A two-tone dither, the way 256-color wallpapers faked texture. */
+  background-color: var(--desk);
+  background-image: repeating-conic-gradient(var(--desk-dither) 0 25%, transparent 0 50%);
+  background-size: 4px 4px;
+}
+
+.off {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  border: 0;
+  background: #000;
+  color: #f0a64b;
+  font-family: var(--font-ui);
+  font-size: clamp(22px, 4vw, 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  padding: 16px;
+  text-align: center;
+}
+
+.off small {
+  font-size: 16px;
+  color: var(--mid);
+}

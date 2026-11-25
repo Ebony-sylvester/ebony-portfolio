@@ -1,1 +1,195 @@
-/* You can add global styles to this file, and also import other style files */
+/* EbonyOS design tokens. The whole site is one "machine", so there is no
+   separate dark mode: the desktop is the theme. */
+:root {
+  --desk: #2f7f7c;
+  --desk-dither: #2a7370;
+  --chrome: #c9c6d1;
+  --chrome-hi: #e4e2ea;
+  --light: #ffffff;
+  --mid: #8c8896;
+  --dark: #26232d;
+  --title-a: #241c7a;
+  --title-b: #7a5be0;
+  --title-off-a: #77737f;
+  --title-off-b: #aeaab8;
+  --accent: #c2367a;
+  --accent-soft: #ffd6e8;
+  --paper: #ffffff;
+  --ink: #1d1b24;
+  --ink-soft: #4a4655;
+  --note: #fff6c4;
+  --term-bg: #110f18;
+  --term-fg: #9cf2c0;
+
+  --font-ui: 'Pixelify Sans', system-ui, sans-serif;
+  --font-read: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-term: 'VT323', ui-monospace, monospace;
+
+  --taskbar-h: 44px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-read);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+a {
+  color: var(--title-a);
+}
+
+/* Bevels: the single device that makes this read as a 90s machine. */
+.bevel-out {
+  background: var(--chrome);
+  box-shadow:
+    inset -1px -1px 0 var(--dark),
+    inset 1px 1px 0 var(--light),
+    inset -2px -2px 0 var(--mid),
+    inset 2px 2px 0 var(--chrome-hi);
+}
+
+.bevel-in {
+  box-shadow:
+    inset -1px -1px 0 var(--light),
+    inset 1px 1px 0 var(--mid),
+    inset -2px -2px 0 var(--chrome-hi),
+    inset 2px 2px 0 var(--dark);
+}
+
+.btn {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--ink);
+  min-height: 32px;
+  padding: 4px 14px;
+  border: 0;
+  cursor: pointer;
+  background: var(--chrome);
+  box-shadow:
+    inset -1px -1px 0 var(--dark),
+    inset 1px 1px 0 var(--light),
+    inset -2px -2px 0 var(--mid),
+    inset 2px 2px 0 var(--chrome-hi);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn:active,
+.btn[aria-pressed='true'] {
+  box-shadow:
+    inset -1px -1px 0 var(--light),
+    inset 1px 1px 0 var(--dark),
+    inset -2px -2px 0 var(--chrome-hi),
+    inset 2px 2px 0 var(--mid);
+  padding: 5px 13px 3px 15px;
+}
+
+.btn.primary {
+  outline: 1px solid var(--dark);
+  outline-offset: -1px;
+}
+
+:focus-visible {
+  outline: 2px dotted var(--accent);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-color: var(--mid) var(--chrome-hi);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* Shared window-content pieces. */
+.pane {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: var(--paper);
+  padding: 20px 22px;
+  line-height: 1.55;
+}
+
+.statusbar {
+  display: flex;
+  gap: 3px;
+  margin-top: 3px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.statusbar > * {
+  padding: 3px 8px;
+}
+
+.statusbar > :first-child {
+  flex: 1;
+}
+
+.ui-label {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* Windows opening and closing (applied by animate.enter / animate.leave). */
+.win-enter {
+  animation: win-in 220ms cubic-bezier(0.2, 0.9, 0.3, 1.15);
+}
+
+.win-leave {
+  animation: win-out 160ms ease-in forwards;
+}
+
+@keyframes win-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes win-out {
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
