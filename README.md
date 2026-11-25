@@ -33,7 +33,7 @@ npm run demo            # re-record docs/demo.gif (needs npm start running)
 Try the terminal: `help`, `whoami`, `projects`, `open contact`, `hire`.
 
 Link previews (LinkedIn, Slack) use the Open Graph tags in `src/index.html`; they point at
-`https://ebony-sylvester.netlify.app`, so update them if the site address changes.
+`https://ebony-portfolio.netlify.app`, so update them if the site address changes.
 
 ## After deploying
 
