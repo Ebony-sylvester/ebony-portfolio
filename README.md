@@ -24,7 +24,7 @@ npm run resume:pdf      # reprint public/Ebony_Sylvester_Resume.pdf from /resume
 | `src/app/data/resume.ts` | All the words: profile, roles, projects, skills |
 | `src/app/os/` | The desktop: window manager, windows, taskbar, Start menu, boot screen, Flop |
 | `src/app/apps/` | What opens in each window: About, Experience, Projects, System, Terminal, Contact, Recycle bin |
-| `src/app/resume-view/` | The plain one-page resume at /resume, which also prints to the PDF |
+| `src/app/data/resume-doc.ts` + `src/app/resume-view/` | The one-page resume at /resume (must print to one page; check with `npm run resume:pdf`) |
 | `public/` | Photo, resume PDF, link-preview image, project screenshots |
 
 Try the terminal: `help`, `whoami`, `projects`, `open contact`, `hire`.

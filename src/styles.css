@@ -196,7 +196,8 @@ a {
 
 /* Printing (the recruiter view's "Save as PDF") needs the page to flow. */
 @page {
-  margin: 0.5in;
+  size: letter;
+  margin: 0.45in 0.5in;
 }
 
 @media print {

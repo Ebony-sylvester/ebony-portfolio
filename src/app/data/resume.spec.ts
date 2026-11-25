@@ -1,4 +1,5 @@
 import { LINKS, PROFILE, PROJECTS, ROLES } from './resume';
+import { RESUME_DOC } from './resume-doc';
 
 // Guards on the content itself: the things a recruiter would notice if they broke.
 describe('portfolio content', () => {
@@ -9,7 +10,8 @@ describe('portfolio content', () => {
   ];
 
   it('links only to https pages', () => {
-    for (const l of allLinks) expect(l.href, l.label).toMatch(/^https:\/\//);
+    const docLinks = [...RESUME_DOC.job.sections, ...RESUME_DOC.projects].map((s) => s.link);
+    for (const l of [...allLinks, ...docLinks]) expect(l.href, l.label).toMatch(/^https:\/\//);
   });
 
   it('gives every project a link and a screenshot', () => {
@@ -25,7 +27,7 @@ describe('portfolio content', () => {
   });
 
   it('never publishes a phone number', () => {
-    const text = JSON.stringify({ PROFILE, ROLES, PROJECTS });
+    const text = JSON.stringify({ PROFILE, ROLES, PROJECTS, RESUME_DOC });
     expect(text).not.toMatch(/\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/);
   });
 });

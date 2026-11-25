@@ -1,15 +1,16 @@
-import { NgOptimizedImage } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, output } from '@angular/core';
-import { EDUCATION, PROFILE, PROJECTS, ROLES, SKILLS } from '../data/resume';
+import { PROFILE } from '../data/resume';
+import { RESUME_DOC } from '../data/resume-doc';
 
 /**
- * The plain, skimmable version of the portfolio for recruiters, at /resume.
- * Same data as the desktop; it also prints cleanly, which is how the
- * downloadable PDF is made.
+ * The one-page resume for recruiters, at /resume. It mirrors my original
+ * resume plus a summary, and prints to a single page (that's how the
+ * downloadable PDF is made).
  */
 @Component({
   selector: 'app-resume-view',
-  imports: [NgOptimizedImage],
+  imports: [NgTemplateOutlet],
   templateUrl: './resume-view.html',
   styleUrl: './resume-view.css',
 })
@@ -17,10 +18,7 @@ export class ResumeView {
   readonly back = output<void>();
 
   protected readonly p = PROFILE;
-  protected readonly roles = ROLES;
-  protected readonly projects = PROJECTS;
-  protected readonly skills = SKILLS;
-  protected readonly edu = EDUCATION;
+  protected readonly doc = RESUME_DOC;
 
   protected print(): void {
     window.print();
