@@ -3,11 +3,13 @@ import { PROJECTS } from '../data/resume';
 import { IconName, PixelIcon } from '../os/pixel-icon';
 
 const FILE_ICON: Record<string, IconName> = {
-  ebonyos: 'heart',
-  'photo-qa': 'floppy',
+  'cleaner-app': 'floppy',
+  'photo-qa': 'doc',
+  'keepers-web': 'computer',
   'phish-free': 'mail',
   'zero-trust': 'doc',
   scraper: 'terminal',
+  ebonyos: 'heart',
 };
 
 /** A folder of project "files"; selecting one shows its details below. */
@@ -38,9 +40,11 @@ const FILE_ICON: Record<string, IconName> = {
             <li>{{ t }}</li>
           }
         </ul>
-        @if (p.link; as l) {
-          <a class="btn" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
-        }
+        <div class="links">
+          @for (l of p.links; track l.href) {
+            <a class="btn" [class.primary]="$first" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
+          }
+        </div>
       </section>
     }
     <div class="statusbar">
@@ -115,13 +119,18 @@ const FILE_ICON: Record<string, IconName> = {
       flex-wrap: wrap;
       gap: 6px;
     }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
     .tags li {
       font-family: var(--font-ui);
       font-size: 13px;
       padding: 2px 8px;
-      background: var(--accent-soft);
-      border: 1px solid var(--accent);
-      color: #7a1f4b;
+      background: var(--paper);
+      border: 1px solid var(--mid);
+      color: var(--ink);
     }
   `,
 })

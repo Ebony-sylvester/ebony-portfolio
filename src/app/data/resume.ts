@@ -9,7 +9,7 @@ export const PROFILE = {
   pitch:
     'I build the screens people use all day. At Keepers I led a React Native app for 1,600+ cleaners and built the React web app their managers run. I like calm interfaces, honest error messages and well-tested code.',
   location: 'Lafayette, Louisiana',
-  lookingFor: 'Software engineering roles (frontend or mobile) and IT support roles',
+  lookingFor: 'Frontend roles building web or mobile applications, and IT support roles',
   automation:
     'I use large language models, including Claude Code, to automate routine development and operations work so teams ship faster with fewer manual steps.',
   company: { name: 'Keepers', url: 'https://usekeepers.com/' },
@@ -38,6 +38,7 @@ export interface Role {
   summary: string;
   stats: { label: string; value: string }[];
   highlights: string[];
+  links: { label: string; href: string }[];
 }
 
 export const ROLES: Role[] = [
@@ -48,6 +49,10 @@ export const ROLES: Role[] = [
     orgUrl: 'https://usekeepers.com/',
     dates: '2026',
     stack: 'React Native, iOS and Android',
+    links: [
+      { label: 'View on the App Store', href: 'https://apps.apple.com/us/app/keepers-jobs-for-cleaners/id6737248043' },
+      { label: 'Visit usekeepers.com', href: 'https://usekeepers.com/' },
+    ],
     summary:
       'Keepers is an AI-powered operations platform for short-term rentals. I led the app cleaners use on the job and owned its release cycle on both stores.',
     stats: [
@@ -70,6 +75,7 @@ export const ROLES: Role[] = [
     orgUrl: 'https://usekeepers.com/',
     dates: '2026',
     stack: 'React, TypeScript, TanStack Query',
+    links: [{ label: 'Visit usekeepers.com', href: 'https://usekeepers.com/' }],
     summary:
       'The multi-tenant dashboard property managers, cleaning companies and staff use to run properties, jobs, reservations and billing. I was one of two frontend engineers on a team of four.',
     stats: [
@@ -97,6 +103,21 @@ export const EDUCATION = {
   date: 'May 2026',
 } as const;
 
+export interface Link {
+  label: string;
+  href: string;
+}
+
+// Links from my resume, so visitors can open the real thing.
+export const LINKS = {
+  keepers: { label: 'Visit usekeepers.com', href: 'https://usekeepers.com/' },
+  appStore: { label: 'View on the App Store', href: 'https://apps.apple.com/us/app/keepers-jobs-for-cleaners/id6737248043' },
+  portfolioRepo: { label: 'View the code', href: 'https://github.com/Ebony-sylvester/ebony-portfolio' },
+  phishFree: { label: 'View on GitHub', href: 'https://github.com/CalebB-hub/INFX_CMPS_490' },
+  zeroTrust: { label: 'Read the report', href: 'https://docs.google.com/document/d/1_OYruB8gZLEXGNGQFSEu477F2GeQMWYUz0jGsqjh9Po/edit?tab=t.0' },
+  scraper: { label: 'Open the notebook', href: 'https://colab.research.google.com/drive/1Isk9eRYXo-GPoa9soMMvhQI87zeaKwMa?usp=sharing' },
+} satisfies Record<string, Link>;
+
 export interface Project {
   id: string;
   name: string;
@@ -104,29 +125,39 @@ export interface Project {
   kind: string;
   stack: string[];
   blurb: string;
-  link?: { label: string; href: string };
+  links: Link[];
 }
 
 export const PROJECTS: Project[] = [
   {
-    id: 'ebonyos',
-    name: 'EbonyOS',
-    file: 'ebonyos.exe',
-    kind: 'This website',
-    stack: ['Angular 22', 'Signals', 'CDK drag-drop', 'TypeScript'],
+    id: 'cleaner-app',
+    name: 'Keepers cleaner app',
+    file: 'cleaner_app.ipa',
+    kind: 'Keepers, iOS and Android',
+    stack: ['React Native', 'Expo / EAS', 'TanStack Query', 'i18n'],
     blurb:
-      'The site you’re using. I built it to learn Angular coming from React: signals, the new control flow, native enter and leave animations and CDK drag-drop.',
-    link: { label: 'View on GitHub', href: PROFILE.github },
+      'The app 1,600+ cleaners use on the job. I led its redesign (layouts, navigation, job and task workflows), built "Fits my day" scheduling, crew tools and earnings statements, and owned releases on both stores.',
+    links: [LINKS.appStore, LINKS.keepers],
   },
   {
     id: 'photo-qa',
     name: 'AI photo QA',
     file: 'photo_qa.app',
     kind: 'Keepers, mobile',
-    link: { label: 'Visit Keepers', href: 'https://usekeepers.com/' },
     stack: ['React Native', 'VLM', 'Vision Camera', 'i18n'],
     blurb:
-      'Cleaners photograph each room; a vision-language model checks the photo against a reference. I built the capture guide, the "Checking photo" state and plain-language retake flows in three languages.',
+      'Cleaners photograph each room; a vision-language model checks the photo against a reference. I built the capture guide, the "Checking photo" state and plain-language retake flows in three languages. The clean-room pass rate went from 52% to 92%.',
+    links: [LINKS.appStore],
+  },
+  {
+    id: 'keepers-web',
+    name: 'Keepers web app',
+    file: 'keepers_web.exe',
+    kind: 'Keepers, web',
+    stack: ['React', 'TypeScript', 'TanStack Query', 'Stripe'],
+    blurb:
+      'The multi-tenant dashboard property managers run their business from. 227 merged PRs in six months: the dashboard, jobs and tasks, a combined calendar and reservations view, the Payment Center and role-based access.',
+    links: [LINKS.keepers],
   },
   {
     id: 'phish-free',
@@ -136,7 +167,7 @@ export const PROJECTS: Project[] = [
     stack: ['React', 'Vite', 'Django REST'],
     blurb:
       'A phishing-awareness training platform. I built the frontend auth and onboarding: role-based signup for individuals and organizations, protected routes, password strength and reset flows, and an admin dashboard prototype.',
-    link: { label: 'View on GitHub', href: PROFILE.github },
+    links: [LINKS.phishFree],
   },
   {
     id: 'zero-trust',
@@ -146,6 +177,7 @@ export const PROJECTS: Project[] = [
     stack: ['Network design', 'RBAC', 'GDPR/ABA'],
     blurb:
       'A network modernization plan for a 500-staff law firm: segmented VLANs replacing a flat LAN, an RBAC access model for compliance, and a phased $770K budget.',
+    links: [LINKS.zeroTrust],
   },
   {
     id: 'scraper',
@@ -153,8 +185,18 @@ export const PROJECTS: Project[] = [
     file: 'scraper.py',
     kind: 'Data notebook',
     stack: ['Python', 'BeautifulSoup', 'Pandas', 'Matplotlib'],
+    blurb: 'A scraper with a relevance-scoring algorithm that ranks what it pulls and charts trends over time.',
+    links: [LINKS.scraper],
+  },
+  {
+    id: 'ebonyos',
+    name: 'EbonyOS',
+    file: 'ebonyos.exe',
+    kind: 'This website',
+    stack: ['Angular 22', 'Signals', 'TypeScript', 'Netlify'],
     blurb:
-      'A scraper with a relevance-scoring algorithm that ranks what it pulls and charts trends over time.',
+      'The site you’re using. I built it to learn Angular coming from React: signals, the new control flow, native enter and leave animations, and a hand-rolled window manager.',
+    links: [LINKS.portfolioRepo],
   },
 ];
 

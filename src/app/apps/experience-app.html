@@ -38,6 +38,11 @@
       </p>
       <p class="stack">{{ r.stack }}</p>
       <p class="summary">{{ r.summary }}</p>
+      <div class="role-links">
+        @for (l of r.links; track l.href) {
+          <a class="btn" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
+        }
+      </div>
 
       <div class="stats">
         @for (s of r.stats; track s.label) {

@@ -5,8 +5,8 @@ import { PixelIcon } from './pixel-icon';
 import { WindowManager } from './window-manager';
 
 /**
- * Desktop shortcuts. Like the real thing, a click selects and a double-click
- * opens; Enter and a touch tap open straight away.
+ * Desktop shortcuts. One click opens, like links: visitors shouldn't have to
+ * know the double-click convention to get in.
  */
 @Component({
   selector: 'app-desktop-icons',
@@ -17,9 +17,7 @@ import { WindowManager } from './window-manager';
         type="button"
         class="icon"
         [class.selected]="selected() === id"
-        (pointerup)="tap($event, id)"
-        (dblclick)="wm.open(id)"
-        (keydown.enter)="wm.open(id)"
+        (click)="open(id)"
       >
         <app-pixel-icon [name]="apps[id].icon" [size]="40" />
         <span>{{ apps[id].label }}</span>
@@ -65,6 +63,10 @@ import { WindowManager } from './window-manager';
       padding: 1px 4px;
       text-shadow: 1px 1px 0 var(--dark);
     }
+    .icon:hover span {
+      background: rgba(36, 28, 122, 0.55);
+      text-shadow: none;
+    }
     .selected span {
       background: var(--title-a);
       outline: 1px dotted var(--accent-soft);
@@ -93,11 +95,8 @@ export class DesktopIcons {
   protected readonly resume = PROFILE.resumePdf;
   protected readonly selected = signal<AppId | null>(null);
 
-  protected tap(e: PointerEvent, id: AppId): void {
-    if (e.pointerType === 'touch' || e.pointerType === 'pen') {
-      this.wm.open(id);
-      return;
-    }
+  protected open(id: AppId): void {
     this.selected.set(id);
+    this.wm.open(id);
   }
 }
