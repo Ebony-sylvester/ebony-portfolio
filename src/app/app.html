@@ -14,6 +14,8 @@
       <app-window [win]="w" animate.enter="win-enter" animate.leave="win-leave">
         @switch (w.id) {
           @case ('about') { <app-about /> }
+          @case ('casestudy') { <app-case-study /> }
+          @case ('notes') { <app-notes /> }
           @case ('experience') { <app-experience /> }
           @case ('projects') { <app-projects /> }
           @case ('system') { <app-system /> }

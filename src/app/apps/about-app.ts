@@ -33,6 +33,10 @@ import { WindowManager } from '../os/window-manager';
           <a [href]="p.company.url" target="_blank" rel="noopener">{{ p.company.name }}</a>: led the cleaner mobile
           app and built the web dashboard
         </dd>
+        <dt>Recommended by</dt>
+        <dd>
+          <a [href]="p.recommendation.url" target="_blank" rel="noopener">{{ p.recommendation.name }}</a>, on LinkedIn
+        </dd>
         <dt>AI automation</dt>
         <dd>{{ p.automation }}</dd>
         <dt>Studied</dt>

@@ -25,7 +25,7 @@ export const RESUME_DOC = {
   job: {
     company: 'Keepers',
     companyUrl: PROFILE.company.url,
-    dates: '2026',
+    dates: 'Jan 2026 – Nov 2026',
     title: 'Junior Software Engineer (promoted from part-time Software Engineer Intern)',
     context: 'AI-powered property operations platform for short-term rentals; 4-person engineering team, 1 of 2 frontend engineers',
     sections: [

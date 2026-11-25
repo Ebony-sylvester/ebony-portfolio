@@ -20,6 +20,9 @@
       <span aria-hidden="true">|</span>
       <span>{{ p.location }}</span>
     </p>
+    <p class="contact">
+      Recommended by <a [href]="p.recommendation.url">{{ p.recommendation.name }}</a> on LinkedIn
+    </p>
   </header>
 
   <section>

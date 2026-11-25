@@ -1,6 +1,7 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PROJECTS } from '../data/resume';
 import { IconName, PixelIcon } from '../os/pixel-icon';
+import { WindowManager } from '../os/window-manager';
 
 const FILE_ICON: Record<string, IconName> = {
   'cleaner-app': 'floppy',
@@ -43,8 +44,11 @@ const FILE_ICON: Record<string, IconName> = {
           }
         </ul>
         <div class="links">
+          @if (p.id === 'cleaner-app') {
+            <button type="button" class="btn primary" (click)="wm.open('casestudy')">Read the case study</button>
+          }
           @for (l of p.links; track l.href) {
-            <a class="btn" [class.primary]="$first" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
+            <a class="btn" [class.primary]="$first && p.id !== 'cleaner-app'" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
           }
         </div>
       </section>
@@ -161,6 +165,7 @@ const FILE_ICON: Record<string, IconName> = {
   `,
 })
 export class ProjectsApp {
+  protected readonly wm = inject(WindowManager);
   protected readonly projects = PROJECTS;
   protected readonly icons = FILE_ICON;
   protected readonly current = signal(PROJECTS[0].id);

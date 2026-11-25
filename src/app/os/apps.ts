@@ -1,6 +1,6 @@
 import { IconName } from './pixel-icon';
 
-export type AppId = 'about' | 'experience' | 'projects' | 'system' | 'terminal' | 'contact' | 'bin';
+export type AppId = 'about' | 'casestudy' | 'experience' | 'projects' | 'notes' | 'system' | 'terminal' | 'contact' | 'bin';
 
 export interface AppDef {
   id: AppId;
@@ -17,13 +17,15 @@ export interface AppDef {
 
 export const APPS: Record<AppId, AppDef> = {
   about: { id: 'about', label: 'About me', title: 'About_me.txt', icon: 'notepad', width: 720, height: 700, at: [0.5, 0.45] },
+  casestudy: { id: 'casestudy', label: 'Case study', title: 'Case_study.doc', icon: 'floppy', width: 780, height: 640, at: [0.4, 0.2] },
   experience: { id: 'experience', label: 'Experience', title: 'Experience', icon: 'folder', width: 760, height: 540, at: [0.3, 0.1] },
   projects: { id: 'projects', label: 'Projects', title: 'Projects', icon: 'briefcase', width: 780, height: 580, at: [0.42, 0.16] },
+  notes: { id: 'notes', label: 'Notes', title: 'Notes', icon: 'notes', width: 720, height: 560, at: [0.5, 0.25] },
   system: { id: 'system', label: 'System properties', title: 'System properties', icon: 'computer', width: 480, height: 520, at: [0.55, 0.08] },
   terminal: { id: 'terminal', label: 'Terminal', title: 'EBONY-DOS prompt', icon: 'terminal', width: 600, height: 380, at: [0.36, 0.3] },
-  contact: { id: 'contact', label: 'Contact', title: 'Say hello', icon: 'mail', width: 420, height: 380, at: [0.6, 0.22] },
+  contact: { id: 'contact', label: 'Contact', title: 'Say hello', icon: 'mail', width: 520, height: 640, at: [0.6, 0.22] },
   bin: { id: 'bin', label: 'Recycle bin', title: 'Recycle bin', icon: 'bin', width: 420, height: 300, at: [0.66, 0.4] },
 };
 
 /** Desktop icon order, top to bottom. */
-export const DESKTOP_ORDER: AppId[] = ['about', 'experience', 'projects', 'system', 'terminal', 'contact', 'bin'];
+export const DESKTOP_ORDER: AppId[] = ['about', 'casestudy', 'experience', 'projects', 'notes', 'system', 'terminal', 'contact', 'bin'];

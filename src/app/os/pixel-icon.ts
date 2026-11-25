@@ -50,6 +50,10 @@ const ART = {
     '.kkkkkkk....', '.kwwwwwkk...', '.kwwwwwkwk..', '.kwwwwwkkkk.', '.kwPPPPwwwk.', '.kwwwwwwwwk.',
     '.kwkkkkkkwk.', '.kwwwwwwwwk.', '.kwkkkkkkwk.', '.kwwwwwwwwk.', '.kwkkkkwwwk.', '.kkkkkkkkkk.',
   ],
+  notes: [
+    '..kkkkkkkk..', '.kPpppppppk.', 'kkPpwwwwwpk.', '.kPpppppppk.', 'kkPpwwwwppk.', '.kPpppppppk.',
+    'kkPpwwwwwpk.', '.kPpppppppk.', 'kkPpppppppk.', '.kPpppppppk.', '..kkkkkkkk..', '............',
+  ],
   heart: [
     '............', '..PPP..PPP..', '.PppPPPPPPP.', '.PppPPPPPPP.', '.PpPPPPPPPP.', '.PPPPPPPPPP.',
     '..PPPPPPPP..', '...PPPPPP...', '....PPPP....', '.....PP.....', '............', '............',

@@ -1,4 +1,5 @@
-import { Service, signal } from '@angular/core';
+import { Service, inject, signal } from '@angular/core';
+import { Analytics } from './analytics';
 
 const RESUME_PATH = '/resume';
 
@@ -9,6 +10,7 @@ const RESUME_PATH = '/resume';
  */
 @Service()
 export class ViewState {
+  private readonly analytics = inject(Analytics);
   readonly resume = signal(location.pathname === RESUME_PATH);
 
   constructor() {
@@ -18,6 +20,7 @@ export class ViewState {
   openResume(): void {
     if (!this.resume()) history.pushState(null, '', RESUME_PATH);
     this.resume.set(true);
+    this.analytics.event('view/resume', 'Resume');
   }
 
   closeResume(): void {

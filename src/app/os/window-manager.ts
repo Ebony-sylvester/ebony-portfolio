@@ -1,4 +1,5 @@
-import { Service, computed, signal } from '@angular/core';
+import { Service, computed, inject, signal } from '@angular/core';
+import { Analytics } from './analytics';
 import { APPS, AppId } from './apps';
 
 export interface OpenWindow {
@@ -14,6 +15,7 @@ export interface OpenWindow {
  */
 @Service()
 export class WindowManager {
+  private readonly analytics = inject(Analytics);
   private readonly list = signal<OpenWindow[]>([]);
   private topZ = 10;
 
@@ -34,6 +36,7 @@ export class WindowManager {
       return;
     }
     this.list.update((l) => [...l, { id, z: ++this.topZ, minimized: false, maximized: false }]);
+    this.analytics.event(`window/${id}`, APPS[id].title);
   }
 
   close(id: AppId): void {

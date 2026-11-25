@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "resume:pdf": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=6000 --print-to-pdf=public/Ebony_Sylvester_Resume.pdf http://localhost:4300/resume"
+    "resume:pdf": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=6000 --print-to-pdf=public/Ebony_Sylvester_Resume.pdf http://localhost:4300/resume",
+    "demo": "node scripts/record-demo.mjs"
   },
   "private": true,
   "packageManager": "npm@11.16.0",
@@ -25,8 +26,11 @@
     "@angular/build": "^22.3.0",
     "@angular/cli": "^22.3.0",
     "@angular/compiler-cli": "^22.3.0",
+    "gifenc": "^1.0.3",
     "jsdom": "^31.0.1",
+    "pngjs": "^7.0.0",
     "prettier": "^3.8.1",
+    "puppeteer-core": "^24.43.1",
     "typescript": "~6.0.2",
     "vitest": "^4.1.12"
   }

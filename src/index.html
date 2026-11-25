@@ -23,6 +23,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Pixelify+Sans:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Netlify Forms reads this at deploy time to register the "contact" form; the Angular form posts to it. -->
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="bot-field"><input name="name"><input name="email"><textarea name="message"></textarea>
+  </form>
   <app-root></app-root>
 </body>
 </html>

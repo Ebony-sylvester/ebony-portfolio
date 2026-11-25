@@ -1,15 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { PROFILE } from '../data/resume';
 import { PixelIcon } from '../os/pixel-icon';
+import { MessageForm } from './message-form';
 
 @Component({
   selector: 'app-contact',
-  imports: [PixelIcon],
+  imports: [PixelIcon, MessageForm],
   template: `
     <div class="pane">
       <div class="head">
         <app-pixel-icon name="mail" [size]="56" />
-        <p>I'm open to frontend and mobile roles, and always happy to talk about a project.</p>
+        <p>I'm looking for frontend roles on web or mobile apps, and IT support roles. Send a message and I'll reply by email.</p>
       </div>
       <div class="email bevel-in">
         <span>{{ p.email }}</span>
@@ -20,6 +21,8 @@ import { PixelIcon } from '../os/pixel-icon';
         <a class="btn" [href]="p.linkedin" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" [href]="p.github" target="_blank" rel="noopener">GitHub</a>
       </div>
+      <h3>Send a message</h3>
+      <app-message-form />
     </div>
   `,
   styles: `
@@ -46,6 +49,14 @@ import { PixelIcon } from '../os/pixel-icon';
     }
     .email span {
       flex: 1;
+    }
+    h3 {
+      margin-top: 20px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--title-a);
+      border-bottom: 1px solid var(--mid);
     }
     .links {
       display: flex;

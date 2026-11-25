@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { AboutApp } from './apps/about-app';
 import { BinApp } from './apps/bin-app';
+import { CaseStudyApp } from './apps/case-study-app';
+import { NotesApp } from './apps/notes-app';
 import { ContactApp } from './apps/contact-app';
 import { ExperienceApp } from './apps/experience-app';
 import { ProjectsApp } from './apps/projects-app';
@@ -23,7 +25,7 @@ const BOOTED_KEY = 'ebonyos-booted';
 @Component({
   selector: 'app-root',
   imports: [
-    AboutApp, BinApp, ContactApp, ExperienceApp, ProjectsApp, SystemApp, TerminalApp,
+    AboutApp, BinApp, CaseStudyApp, ContactApp, NotesApp, ExperienceApp, ProjectsApp, SystemApp, TerminalApp,
     BootScreen, DesktopIcons, FloppyHelper, Nameplate, StartMenu, Taskbar, WindowFrame, ResumeView,
   ],
   templateUrl: './app.html',

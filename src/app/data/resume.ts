@@ -13,6 +13,8 @@ export const PROFILE = {
   automation:
     'I use large language models, including Claude Code, to automate routine development and operations work so teams ship faster with fewer manual steps.',
   company: { name: 'Keepers', url: 'https://usekeepers.com/' },
+  /** Wrote me a LinkedIn recommendation; link to his profile only. */
+  recommendation: { name: 'Alex Lanclos', url: 'https://www.linkedin.com/in/alexander-lanclos-5ba46538' },
   email: 'ebony.sylvester04@yahoo.com',
   linkedin: 'https://www.linkedin.com/in/ebony-sylvester',
   github: 'https://github.com/Ebony-sylvester',
@@ -47,7 +49,7 @@ export const ROLES: Role[] = [
     title: 'Lead engineer, Cleaner mobile app',
     org: 'Keepers',
     orgUrl: 'https://usekeepers.com/',
-    dates: '2026',
+    dates: 'Jan – Nov 2026',
     stack: 'React Native, iOS and Android',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/us/app/keepers-jobs-for-cleaners/id6737248043' },
@@ -73,7 +75,7 @@ export const ROLES: Role[] = [
     title: 'Frontend engineer, Keepers web app',
     org: 'Keepers',
     orgUrl: 'https://usekeepers.com/',
-    dates: '2026',
+    dates: 'Jan – Nov 2026',
     stack: 'React, TypeScript, TanStack Query',
     links: [{ label: 'Visit usekeepers.com', href: 'https://usekeepers.com/' }],
     summary:
