@@ -1,10 +1,12 @@
-import { Component, ElementRef, afterNextRender, computed, inject, input, signal } from '@angular/core';
+import { Component, ElementRef, afterNextRender, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { APPS } from './apps';
 import { PixelIcon } from './pixel-icon';
 import { OpenWindow, WindowManager } from './window-manager';
 
 const TASKBAR_H = 44;
 const ICON_COLUMN = 112;
+const GAP = 12;
+const MIN_WIDTH = 420;
 const MOBILE = '(max-width: 720px)';
 
 /**
@@ -27,8 +29,8 @@ const MOBILE = '(max-width: 720px)';
     '[class.min]': 'win().minimized',
     '[class.dragging]': 'dragging()',
     '[style.z-index]': 'win().z',
-    '[style.width.px]': 'def().width',
-    '[style.height.px]': 'def().height',
+    '[style.width.px]': 'size().w',
+    '[style.height.px]': 'size().h',
     '[style.translate]': 'pos().x + "px " + pos().y + "px"',
     '(pointerdown)': 'wm.focus(win().id)',
     '(keydown.escape)': 'wm.close(win().id)',
@@ -44,13 +46,15 @@ export class WindowFrame {
   protected readonly titleId = computed(() => `win-title-${this.win().id}`);
   protected readonly active = computed(() => this.wm.activeId() === this.win().id);
   protected readonly pos = signal({ x: 24, y: 24 });
+  /** Starts at the app's preferred size; place() may shrink it to fit the desktop. */
+  protected readonly size = linkedSignal(() => ({ w: this.def().width, h: this.def().height }));
   protected readonly dragging = signal(false);
 
   private grab = { dx: 0, dy: 0 };
 
   constructor() {
     afterNextRender(() => {
-      this.pos.set(this.startPosition());
+      this.place();
       // Apps that take typing (the terminal) mark their field; everything else focuses the window.
       const el = this.host.nativeElement;
       (el.querySelector<HTMLElement>('[autofocus]') ?? el).focus({ preventScroll: true });
@@ -68,7 +72,7 @@ export class WindowFrame {
 
   protected drag(e: PointerEvent): void {
     if (!this.dragging()) return;
-    const w = this.def().width;
+    const w = this.size().w;
     // Keep at least a grab-able strip of title bar on screen.
     const x = clamp(e.clientX - this.grab.dx, 80 - w, innerWidth - 80);
     const y = clamp(e.clientY - this.grab.dy, 0, innerHeight - TASKBAR_H - 32);
@@ -79,13 +83,27 @@ export class WindowFrame {
     this.dragging.set(false);
   }
 
-  private startPosition(): { x: number; y: number } {
+  /**
+   * Opens the window in the desktop area right of the icons, shrinking it to
+   * fit rather than covering them. `at` places it within that area
+   * (0.5, 0.5 is centered).
+   */
+  private place(): void {
     const { width, height, at } = this.def();
-    // Leave the desktop icon column clear when there's room for it.
-    const left = innerWidth - width > ICON_COLUMN + 16 ? ICON_COLUMN : 8;
-    const freeW = Math.max(0, innerWidth - width - left);
-    const freeH = Math.max(0, innerHeight - TASKBAR_H - height);
-    return { x: Math.round(left + at[0] * freeW), y: Math.round(Math.max(8, at[1] * freeH)) };
+    const icons = document.querySelector('app-desktop-icons')?.getBoundingClientRect();
+    const left = Math.round((icons?.right ?? ICON_COLUMN) + GAP);
+    const areaW = innerWidth - left - GAP;
+    const areaH = innerHeight - TASKBAR_H - GAP * 2;
+
+    // Too narrow to sit beside the icons (small tablets): overlap them rather than be unusable.
+    const roomy = areaW >= MIN_WIDTH;
+    const w = Math.min(width, roomy ? areaW : innerWidth - GAP * 2);
+    const h = Math.min(height, areaH);
+    const x0 = roomy ? left : GAP;
+    const freeW = (roomy ? areaW : innerWidth - GAP * 2) - w;
+
+    this.size.set({ w, h });
+    this.pos.set({ x: Math.round(x0 + at[0] * freeW), y: Math.round(GAP + at[1] * (areaH - h)) });
   }
 }
 

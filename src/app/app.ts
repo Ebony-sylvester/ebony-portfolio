@@ -74,7 +74,8 @@ export class App {
   /** First thing a visitor sees on the desktop: who this is, then a nudge from Flop. */
   private arrive(): void {
     this.wm.open('about');
-    if (matchMedia('(min-width: 721px)').matches) setTimeout(() => this.helper.set(true), 1600);
+    // Flop only pops up where there's room beside the centered About window.
+    if (matchMedia('(min-width: 1200px)').matches) setTimeout(() => this.helper.set(true), 1600);
   }
 }
 
