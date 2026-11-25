@@ -4,8 +4,10 @@
 export const PROFILE = {
   name: 'Ebony Sylvester',
   role: 'Junior Software Engineer',
+  /** The headline from my LinkedIn, shown as tags under my title. */
+  focus: ['React and React Native', 'AI-powered SaaS', 'IT support and cybersecurity'],
   pitch:
-    'I build the screens people use all day: a React Native app for 1,600+ cleaners and the React web app their managers run. I like calm interfaces, honest error messages and well-tested code.',
+    'I build the screens people use all day. At Keepers I led a React Native app for 1,600+ cleaners and built the React web app their managers run. I like calm interfaces, honest error messages and well-tested code.',
   location: 'Lafayette, Louisiana',
   email: 'ebony.sylvester04@yahoo.com',
   linkedin: 'https://www.linkedin.com/in/ebony-sylvester',
@@ -38,10 +40,10 @@ export const ROLES: Role[] = [
     id: 'cleaner-app',
     title: 'Lead engineer, Cleaner mobile app',
     org: 'Keepers',
-    dates: 'Jan 2026 – present',
+    dates: '2026',
     stack: 'React Native, iOS and Android',
     summary:
-      'Keepers is an AI-powered operations platform for short-term rentals. I lead the app cleaners use on the job, and own its release cycle on both stores.',
+      'Keepers is an AI-powered operations platform for short-term rentals. I led the app cleaners use on the job and owned its release cycle on both stores.',
     stats: [
       { label: 'Active cleaners', value: '1,600+' },
       { label: 'Cleaning companies', value: '65' },
@@ -59,10 +61,10 @@ export const ROLES: Role[] = [
     id: 'saas-web',
     title: 'Frontend engineer, Keepers web app',
     org: 'Keepers',
-    dates: 'Jan 2026 – present',
+    dates: '2026',
     stack: 'React, TypeScript, TanStack Query',
     summary:
-      'The multi-tenant dashboard property managers, cleaning companies and staff use to run properties, jobs, reservations and billing. One of two frontend engineers on a team of four.',
+      'The multi-tenant dashboard property managers, cleaning companies and staff use to run properties, jobs, reservations and billing. I was one of two frontend engineers on a team of four.',
     stats: [
       { label: 'Merged PRs, first 6 months', value: '227' },
       { label: 'Commits', value: '1,200+' },

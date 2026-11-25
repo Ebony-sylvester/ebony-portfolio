@@ -21,7 +21,7 @@ import { PixelIcon } from '../os/pixel-icon';
             <dt>Registered to</dt>
             <dd>{{ p.name }}<br />{{ edu.school }}, {{ edu.date }}</dd>
             <dt>Computer</dt>
-            <dd>{{ p.role }} at Keepers<br />TypeScript processor<br />React and React Native, dual core</dd>
+            <dd>{{ p.role }}<br />TypeScript processor<br />React and React Native, dual core</dd>
           </dl>
         </div>
       } @else {

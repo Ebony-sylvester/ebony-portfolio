@@ -16,12 +16,19 @@ import { WindowManager } from '../os/window-manager';
       </figure>
       <div class="head">
         <h1>{{ p.name }}</h1>
-        <p class="role">{{ p.role }} at Keepers</p>
+        <p class="role">{{ p.role }}</p>
+        <ul class="focus" aria-label="Focus areas">
+          @for (f of p.focus; track f) {
+            <li>{{ f }}</li>
+          }
+        </ul>
       </div>
       <p class="pitch">{{ p.pitch }}</p>
       <dl>
-        <dt>Now</dt>
-        <dd>Leading the Keepers cleaner app and building the web dashboard</dd>
+        <dt>Looking for</dt>
+        <dd>My next software engineering role, frontend or mobile</dd>
+        <dt>Most recently</dt>
+        <dd>Keepers: led the cleaner mobile app and built the web dashboard</dd>
         <dt>Studied</dt>
         <dd>{{ edu.degree }}, {{ edu.school }} ({{ edu.date }})</dd>
         <dt>Based in</dt>
@@ -96,6 +103,22 @@ import { WindowManager } from '../os/window-manager';
       font-family: var(--font-ui);
       font-size: 18px;
       color: var(--accent);
+    }
+    .focus {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .focus li {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      padding: 2px 8px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: #7a1f4b;
     }
     .pitch {
       margin-top: 18px;

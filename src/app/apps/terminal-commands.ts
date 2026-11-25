@@ -29,7 +29,7 @@ export function runCommand(raw: string): CommandResult {
     case '?':
       return print(HELP);
     case 'whoami':
-      return print([`${PROFILE.name}, ${PROFILE.role.toLowerCase()} at Keepers.`, PROFILE.pitch]);
+      return print([`${PROFILE.name}, ${PROFILE.role.toLowerCase()}.`, `Focus: ${PROFILE.focus.join(', ')}.`, PROFILE.pitch]);
     case 'experience':
       return print(ROLES.flatMap((r) => [`> ${r.title} (${r.dates})`, ...r.stats.map((s) => `    ${s.value} ${s.label.toLowerCase()}`)]));
     case 'projects':
