@@ -17,10 +17,10 @@ export const PROFILE = {
   linkedin: 'https://www.linkedin.com/in/ebony-sylvester',
   github: 'https://github.com/Ebony-sylvester',
   /**
-   * Resume links (desktop icon, Start menu, About button) only show when this is set.
-   * To add them back, put a PDF without your phone number in public/ and set its filename here.
+   * Printed from the /resume page (no phone number). Regenerate with
+   * `npm run resume:pdf` while `npm start` is running. Set to null to hide the download.
    */
-  resumePdf: null as string | null,
+  resumePdf: 'Ebony_Sylvester_Resume.pdf' as string | null,
   photo: 'ebony-sylvester.jpg',
 } as const;
 
@@ -126,31 +126,25 @@ export interface Project {
   stack: string[];
   blurb: string;
   links: Link[];
+  /** Screenshot in public/projects/, captured from the project's public page. */
+  shot: string;
 }
 
 export const PROJECTS: Project[] = [
   {
     id: 'cleaner-app',
+    shot: 'projects/cleaner-app.jpg',
     name: 'Keepers cleaner app',
     file: 'cleaner_app.ipa',
     kind: 'Keepers, iOS and Android',
-    stack: ['React Native', 'Expo / EAS', 'TanStack Query', 'i18n'],
+    stack: ['React Native', 'Expo / EAS', 'VLM photo QA', 'Vision Camera', 'i18n'],
     blurb:
-      'The app 1,600+ cleaners use on the job. I led its redesign (layouts, navigation, job and task workflows), built "Fits my day" scheduling, crew tools and earnings statements, and owned releases on both stores.',
+      'The app 1,600+ cleaners use on the job. I led its redesign and owned releases on both stores. I also built the app side of AI photo QA: a vision-language model checks each room photo against a reference, with a capture guide and plain-language retake flows in three languages. The clean-room pass rate went from 52% to 92%.',
     links: [LINKS.appStore, LINKS.keepers],
   },
   {
-    id: 'photo-qa',
-    name: 'AI photo QA',
-    file: 'photo_qa.app',
-    kind: 'Keepers, mobile',
-    stack: ['React Native', 'VLM', 'Vision Camera', 'i18n'],
-    blurb:
-      'Cleaners photograph each room; a vision-language model checks the photo against a reference. I built the capture guide, the "Checking photo" state and plain-language retake flows in three languages. The clean-room pass rate went from 52% to 92%.',
-    links: [LINKS.appStore],
-  },
-  {
     id: 'keepers-web',
+    shot: 'projects/keepers-web.jpg',
     name: 'Keepers web app',
     file: 'keepers_web.exe',
     kind: 'Keepers, web',
@@ -161,6 +155,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'phish-free',
+    shot: 'projects/phish-free.jpg',
     name: 'Phish Free',
     file: 'phish_free.web',
     kind: 'Team project',
@@ -171,6 +166,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'zero-trust',
+    shot: 'projects/zero-trust.jpg',
     name: 'Zero Trust redesign',
     file: 'zero_trust.doc',
     kind: 'Report, team of 4',
@@ -181,15 +177,18 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'scraper',
-    name: 'Web scraper',
-    file: 'scraper.py',
-    kind: 'Data notebook',
-    stack: ['Python', 'BeautifulSoup', 'Pandas', 'Matplotlib'],
-    blurb: 'A scraper with a relevance-scoring algorithm that ranks what it pulls and charts trends over time.',
+    shot: 'projects/scraper.jpg',
+    name: 'Vulnerability data scraper',
+    file: 'vuln_scraper.py',
+    kind: 'Security, Python notebook',
+    stack: ['Python', 'BeautifulSoup', 'Requests', 'Pandas', 'Matplotlib'],
+    blurb:
+      'A Python tool that scrapes web pages for vulnerability data, filters by keyword or CVE identifier, scores each result for relevance and charts the trends.',
     links: [LINKS.scraper],
   },
   {
     id: 'ebonyos',
+    shot: 'projects/ebonyos.jpg',
     name: 'EbonyOS',
     file: 'ebonyos.exe',
     kind: 'This website',

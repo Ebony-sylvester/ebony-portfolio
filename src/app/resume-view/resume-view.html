@@ -1,0 +1,88 @@
+<nav class="toolbar no-print" aria-label="Resume actions">
+  <button type="button" class="btn" (click)="back.emit()">Back to the desktop</button>
+  <span class="spacer"></span>
+  @if (p.resumePdf; as pdf) {
+    <a class="btn" [href]="pdf" download>Download PDF</a>
+  }
+  <button type="button" class="btn primary" (click)="print()">Print or save as PDF</button>
+</nav>
+
+<main class="sheet">
+  <header>
+    <img class="photo no-print" [ngSrc]="p.photo" width="720" height="900" [alt]="p.name" />
+    <div>
+      <h1>{{ p.name }}</h1>
+      <p class="title">{{ p.role }}</p>
+      <p class="focus">{{ p.focus.join(', ') }}</p>
+      <p class="contact">
+        <a [href]="'mailto:' + p.email">{{ p.email }}</a>
+        <a [href]="p.linkedin">linkedin.com/in/ebony-sylvester</a>
+        <a [href]="p.github">github.com/Ebony-sylvester</a>
+        <span>{{ p.location }}</span>
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>{{ p.pitch }}</p>
+    <p class="gap"><strong>Looking for:</strong> {{ p.lookingFor }}.</p>
+    <p class="gap"><strong>AI automation:</strong> {{ p.automation }}</p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    @for (r of roles; track r.id) {
+      <article>
+        <div class="row">
+          <h3>{{ r.title }}</h3>
+          <span class="date">{{ r.dates }}</span>
+        </div>
+        <p class="sub"><a [href]="r.orgUrl">{{ r.org }}</a>, {{ r.stack }}</p>
+        <ul>
+          @for (h of r.highlights; track h) {
+            <li>{{ h }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    @for (pr of projects; track pr.id) {
+      <article>
+        <div class="row">
+          <h3>{{ pr.name }}</h3>
+          <span class="date">{{ pr.kind }}</span>
+        </div>
+        <p>{{ pr.blurb }}</p>
+        <p class="sub">
+          {{ pr.stack.join(', ') }}
+          @for (l of pr.links; track l.href) {
+            <a class="link" [href]="l.href">{{ l.label }}</a>
+          }
+        </p>
+      </article>
+    }
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl>
+      @for (g of skills; track g.device) {
+        <dt>{{ g.device }}</dt>
+        <dd>{{ g.items.join(', ') }}</dd>
+      }
+    </dl>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="row">
+      <h3>{{ edu.school }}</h3>
+      <span class="date">{{ edu.date }}</span>
+    </div>
+    <p class="sub">{{ edu.degree }}</p>
+  </section>
+</main>

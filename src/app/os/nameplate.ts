@@ -33,7 +33,8 @@ import { PROFILE } from '../data/resume';
       font-size: 15px;
       text-shadow: 1px 1px 0 var(--dark);
     }
-    @media (max-width: 720px) {
+    /* Only where it clears the centered About window. */
+    @media (max-width: 1399px) {
       :host {
         display: none;
       }

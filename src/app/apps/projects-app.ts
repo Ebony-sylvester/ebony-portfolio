@@ -4,7 +4,6 @@ import { IconName, PixelIcon } from '../os/pixel-icon';
 
 const FILE_ICON: Record<string, IconName> = {
   'cleaner-app': 'floppy',
-  'photo-qa': 'doc',
   'keepers-web': 'computer',
   'phish-free': 'mail',
   'zero-trust': 'doc',
@@ -32,6 +31,9 @@ const FILE_ICON: Record<string, IconName> = {
     </div>
     @if (project(); as p) {
       <section class="info bevel-in" aria-live="polite">
+        <a class="shot" [href]="p.links[0].href" target="_blank" rel="noopener">
+          <img [src]="p.shot" width="1000" height="625" loading="lazy" [alt]="'Screenshot of ' + p.name" />
+        </a>
         <h3>{{ p.name }}</h3>
         <p class="kind">{{ p.kind }}</p>
         <p class="blurb">{{ p.blurb }}</p>
@@ -96,6 +98,30 @@ const FILE_ICON: Record<string, IconName> = {
       animation: swap 200ms steps(3, end);
     }
     @keyframes swap { from { clip-path: inset(0 0 100% 0); } }
+    .shot {
+      float: right;
+      width: min(46%, 300px);
+      margin: 0 0 10px 16px;
+      padding: 3px;
+      background: var(--chrome);
+      box-shadow: inset 1px 1px 0 var(--dark), inset -1px -1px 0 var(--light);
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 8 / 5;
+      object-fit: cover;
+      object-position: top;
+    }
+    @media (max-width: 720px) {
+      .shot {
+        float: none;
+        display: block;
+        width: 100%;
+        margin: 0 0 12px;
+      }
+    }
     h3 {
       font-family: var(--font-ui);
       font-weight: 600;

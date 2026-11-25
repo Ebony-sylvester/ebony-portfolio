@@ -12,7 +12,7 @@ const JUNK = [
   selector: 'app-bin',
   imports: [PixelIcon],
   template: `
-    <ul class="pane">
+    <ul class="pane" tabindex="0" aria-label="Deleted files">
       @for (item of items(); track item.name) {
         <li animate.leave="gone">
           <app-pixel-icon name="doc" [size]="20" />

@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { EDUCATION, PROFILE } from '../data/resume';
+import { ViewState } from '../os/view-state';
 import { WindowManager } from '../os/window-manager';
 
 @Component({
@@ -43,9 +44,7 @@ import { WindowManager } from '../os/window-manager';
     <div class="actions">
       <button type="button" class="btn primary" (click)="wm.open('experience')">See experience</button>
       <button type="button" class="btn" (click)="wm.open('projects')">Browse projects</button>
-      @if (p.resumePdf; as href) {
-        <a class="btn" [href]="href" target="_blank" rel="noopener">Open resume</a>
-      }
+      <button type="button" class="btn" (click)="view.openResume()">Resume</button>
       <span class="links">
         <a class="btn" [href]="'mailto:' + p.email">Email</a>
         <a class="btn" [href]="p.linkedin" target="_blank" rel="noopener">LinkedIn</a>
@@ -171,6 +170,7 @@ import { WindowManager } from '../os/window-manager';
 })
 export class AboutApp {
   protected readonly wm = inject(WindowManager);
+  protected readonly view = inject(ViewState);
   protected readonly p = PROFILE;
   protected readonly edu = EDUCATION;
 }

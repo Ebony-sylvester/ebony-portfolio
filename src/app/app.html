@@ -1,40 +1,49 @@
-@if (!booted()) {
-  <app-boot-screen (done)="onBooted()" />
-}
-
-<main class="desktop">
-  <h1 class="sr-only">Ebony Sylvester, software engineer. Portfolio styled as a retro desktop.</h1>
-  <app-nameplate />
-  <app-desktop-icons />
-
-  @for (w of wm.windows(); track w.id) {
-    <app-window [win]="w" animate.enter="win-enter" animate.leave="win-leave">
-      @switch (w.id) {
-        @case ('about') { <app-about /> }
-        @case ('experience') { <app-experience /> }
-        @case ('projects') { <app-projects /> }
-        @case ('system') { <app-system /> }
-        @case ('terminal') { <app-terminal /> }
-        @case ('contact') { <app-contact /> }
-        @case ('bin') { <app-bin /> }
-      }
-    </app-window>
+@if (view.resume()) {
+  <app-resume-view (back)="view.closeResume()" />
+} @else {
+  @if (!booted()) {
+    <app-boot-screen (done)="onBooted()" />
   }
 
-  @if (helper()) {
-    <app-floppy-helper (dismiss)="helper.set(false)" />
+  <main class="desktop">
+    <h1 class="sr-only">Ebony Sylvester, software engineer. Portfolio styled as a retro desktop.</h1>
+    <app-nameplate />
+    <app-desktop-icons />
+
+    @for (w of wm.windows(); track w.id) {
+      <app-window [win]="w" animate.enter="win-enter" animate.leave="win-leave">
+        @switch (w.id) {
+          @case ('about') { <app-about /> }
+          @case ('experience') { <app-experience /> }
+          @case ('projects') { <app-projects /> }
+          @case ('system') { <app-system /> }
+          @case ('terminal') { <app-terminal /> }
+          @case ('contact') { <app-contact /> }
+          @case ('bin') { <app-bin /> }
+        }
+      </app-window>
+    }
+
+    @if (helper()) {
+      <app-floppy-helper (dismiss)="helper.set(false)" />
+    }
+  </main>
+
+  @if (startOpen()) {
+    <app-start-menu
+      (launch)="launch($event)"
+      (openResume)="startOpen.set(false); view.openResume()"
+      (shutDown)="shutDown()"
+      (dismiss)="startOpen.set(false)"
+    />
   }
-</main>
 
-@if (startOpen()) {
-  <app-start-menu (launch)="launch($event)" (shutDown)="shutDown()" (dismiss)="startOpen.set(false)" />
-}
+  <app-taskbar [startOpen]="startOpen()" (toggleStart)="startOpen.set(!startOpen())" />
 
-<app-taskbar [startOpen]="startOpen()" (toggleStart)="startOpen.set(!startOpen())" />
-
-@if (off()) {
-  <button type="button" class="off" (click)="restart()">
-    <span>It's now safe to close this tab.</span>
-    <small>Or click anywhere to start EbonyOS again</small>
-  </button>
+  @if (off()) {
+    <button type="button" class="off" (click)="restart()">
+      <span>It's now safe to close this tab.</span>
+      <small>Or click anywhere to start EbonyOS again</small>
+    </button>
+  }
 }

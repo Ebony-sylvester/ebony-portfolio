@@ -14,7 +14,9 @@ import { Nameplate } from './os/nameplate';
 import { StartMenu } from './os/start-menu';
 import { Taskbar } from './os/taskbar';
 import { WindowFrame } from './os/window-frame';
+import { ViewState } from './os/view-state';
 import { WindowManager } from './os/window-manager';
+import { ResumeView } from './resume-view/resume-view';
 
 const BOOTED_KEY = 'ebonyos-booted';
 
@@ -22,7 +24,7 @@ const BOOTED_KEY = 'ebonyos-booted';
   selector: 'app-root',
   imports: [
     AboutApp, BinApp, ContactApp, ExperienceApp, ProjectsApp, SystemApp, TerminalApp,
-    BootScreen, DesktopIcons, FloppyHelper, Nameplate, StartMenu, Taskbar, WindowFrame,
+    BootScreen, DesktopIcons, FloppyHelper, Nameplate, StartMenu, Taskbar, WindowFrame, ResumeView,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -30,7 +32,9 @@ const BOOTED_KEY = 'ebonyos-booted';
 })
 export class App {
   protected readonly wm = inject(WindowManager);
-  protected readonly booted = signal(skipBoot());
+  protected readonly view = inject(ViewState);
+  // Someone landing straight on /resume came for the facts, not the boot screen.
+  protected readonly booted = signal(skipBoot() || this.view.resume());
   protected readonly startOpen = signal(false);
   protected readonly helper = signal(false);
   protected readonly off = signal(false);
@@ -76,7 +80,7 @@ export class App {
   private arrive(): void {
     this.wm.open('about');
     // Flop only pops up where there's room beside the centered About window.
-    if (matchMedia('(min-width: 1200px)').matches) setTimeout(() => this.helper.set(true), 1600);
+    if (matchMedia('(min-width: 1500px)').matches) setTimeout(() => this.helper.set(true), 1600);
   }
 }
 

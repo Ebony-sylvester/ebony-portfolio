@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { PROFILE } from '../data/resume';
 import { APPS, AppId, DESKTOP_ORDER } from './apps';
 import { PixelIcon } from './pixel-icon';
+import { ViewState } from './view-state';
 import { WindowManager } from './window-manager';
 
 /**
@@ -23,12 +23,10 @@ import { WindowManager } from './window-manager';
         <span>{{ apps[id].label }}</span>
       </button>
     }
-    @if (resume; as href) {
-      <a class="icon" [href]="href" target="_blank" rel="noopener">
-        <app-pixel-icon name="doc" [size]="40" />
-        <span>Resume.pdf</span>
-      </a>
-    }
+    <button type="button" class="icon" (click)="view.openResume()">
+      <app-pixel-icon name="doc" [size]="40" />
+      <span>Resume</span>
+    </button>
   `,
   styles: `
     :host {
@@ -92,7 +90,7 @@ export class DesktopIcons {
   protected readonly wm = inject(WindowManager);
   protected readonly apps = APPS;
   protected readonly order = DESKTOP_ORDER;
-  protected readonly resume = PROFILE.resumePdf;
+  protected readonly view = inject(ViewState);
   protected readonly selected = signal<AppId | null>(null);
 
   protected open(id: AppId): void {

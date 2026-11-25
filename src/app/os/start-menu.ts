@@ -1,5 +1,4 @@
 import { Component, ElementRef, afterNextRender, inject, output } from '@angular/core';
-import { PROFILE } from '../data/resume';
 import { APPS, AppId, DESKTOP_ORDER } from './apps';
 import { PixelIcon } from './pixel-icon';
 
@@ -18,14 +17,12 @@ import { PixelIcon } from './pixel-icon';
         </li>
       }
       <li role="separator" class="sep"></li>
-      @if (resume; as href) {
-        <li role="none">
-          <a role="menuitem" [href]="href" target="_blank" rel="noopener" (click)="dismiss.emit()">
-            <app-pixel-icon name="doc" [size]="24" />
-            Resume (PDF)
-          </a>
-        </li>
-      }
+      <li role="none">
+        <button type="button" role="menuitem" (click)="openResume.emit()">
+          <app-pixel-icon name="doc" [size]="24" />
+          Resume
+        </button>
+      </li>
       <li role="none">
         <button type="button" role="menuitem" (click)="shutDown.emit()">
           <app-pixel-icon name="computer" [size]="24" />
@@ -75,7 +72,7 @@ import { PixelIcon } from './pixel-icon';
       padding: 2px;
       flex: 1;
     }
-    button, a {
+    button {
       width: 100%;
       display: flex;
       align-items: center;
@@ -90,7 +87,7 @@ import { PixelIcon } from './pixel-icon';
       cursor: pointer;
       text-align: left;
     }
-    button:hover, a:hover, button:focus-visible, a:focus-visible {
+    button:hover, button:focus-visible {
       background: var(--title-a);
       color: var(--light);
       outline: none;
@@ -106,12 +103,12 @@ import { PixelIcon } from './pixel-icon';
 })
 export class StartMenu {
   readonly launch = output<AppId>();
+  readonly openResume = output<void>();
   readonly shutDown = output<void>();
   readonly dismiss = output<void>();
 
   protected readonly apps = APPS;
   protected readonly order = DESKTOP_ORDER;
-  protected readonly resume = PROFILE.resumePdf;
 
   constructor() {
     const host = inject<ElementRef<HTMLElement>>(ElementRef);

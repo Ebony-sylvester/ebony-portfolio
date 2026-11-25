@@ -193,3 +193,17 @@ a {
     transform: scale(0.9);
   }
 }
+
+/* Printing (the recruiter view's "Save as PDF") needs the page to flow. */
+@page {
+  margin: 0.5in;
+}
+
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+}

@@ -20,11 +20,10 @@ const clockFormat = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute
       <app-pixel-icon name="heart" [size]="20" />
       Start
     </button>
-    <div class="tasks" role="list" aria-label="Open windows">
+    <div class="tasks" role="group" aria-label="Open windows">
       @for (w of wm.windows(); track w.id) {
         <button
           type="button"
-          role="listitem"
           class="btn task"
           [attr.aria-pressed]="wm.activeId() === w.id"
           (click)="wm.taskbarClick(w.id)"
@@ -39,6 +38,7 @@ const clockFormat = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute
       <time>{{ time() }}</time>
     </div>
   `,
+  host: { role: 'navigation', 'aria-label': 'Taskbar' },
   styles: `
     :host {
       position: fixed;
