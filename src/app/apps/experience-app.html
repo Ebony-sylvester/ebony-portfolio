@@ -33,7 +33,9 @@
   <article class="pane detail">
     @if (role(); as r) {
       <h3>{{ r.title }}</h3>
-      <p class="meta">{{ r.org }}, {{ r.dates }}</p>
+      <p class="meta">
+        <a [href]="r.orgUrl" target="_blank" rel="noopener">{{ r.org }}</a>, {{ r.dates }}
+      </p>
       <p class="stack">{{ r.stack }}</p>
       <p class="summary">{{ r.summary }}</p>
 

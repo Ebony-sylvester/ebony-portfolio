@@ -10,7 +10,7 @@ interface Tip {
 
 // Flop, the desktop helper. Each tip points at one thing worth opening.
 const TIPS: Tip[] = [
-  { text: 'Hi! I’m Flop. Looks like you’re hiring. Want the short version?', action: { label: 'See experience', app: 'experience' } },
+  { text: 'Hi, I’m Flop. Want a quick tour of Ebony’s experience?', action: { label: 'See experience', app: 'experience' } },
   { text: 'Ebony’s photo QA work took a clean-room pass rate from 52% to 92%.', action: { label: 'Show me', app: 'experience' } },
   { text: 'Psst: the terminal takes real commands. Try typing "help".', action: { label: 'Open terminal', app: 'terminal' } },
   { text: 'This whole desktop is Angular. Ebony learned it to build this.', action: { label: 'See projects', app: 'projects' } },

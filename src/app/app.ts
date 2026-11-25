@@ -10,6 +10,7 @@ import { AppId } from './os/apps';
 import { BootScreen } from './os/boot-screen';
 import { DesktopIcons } from './os/desktop-icons';
 import { FloppyHelper } from './os/floppy-helper';
+import { Nameplate } from './os/nameplate';
 import { StartMenu } from './os/start-menu';
 import { Taskbar } from './os/taskbar';
 import { WindowFrame } from './os/window-frame';
@@ -21,7 +22,7 @@ const BOOTED_KEY = 'ebonyos-booted';
   selector: 'app-root',
   imports: [
     AboutApp, BinApp, ContactApp, ExperienceApp, ProjectsApp, SystemApp, TerminalApp,
-    BootScreen, DesktopIcons, FloppyHelper, StartMenu, Taskbar, WindowFrame,
+    BootScreen, DesktopIcons, FloppyHelper, Nameplate, StartMenu, Taskbar, WindowFrame,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

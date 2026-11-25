@@ -9,6 +9,10 @@ export const PROFILE = {
   pitch:
     'I build the screens people use all day. At Keepers I led a React Native app for 1,600+ cleaners and built the React web app their managers run. I like calm interfaces, honest error messages and well-tested code.',
   location: 'Lafayette, Louisiana',
+  lookingFor: 'Software engineering roles (frontend or mobile) and IT support roles',
+  automation:
+    'I use large language models, including Claude Code, to automate routine development and operations work so teams ship faster with fewer manual steps.',
+  company: { name: 'Keepers', url: 'https://usekeepers.com/' },
   email: 'ebony.sylvester04@yahoo.com',
   linkedin: 'https://www.linkedin.com/in/ebony-sylvester',
   github: 'https://github.com/Ebony-sylvester',
@@ -28,6 +32,7 @@ export interface Role {
   id: string;
   title: string;
   org: string;
+  orgUrl: string;
   dates: string;
   stack: string;
   summary: string;
@@ -40,6 +45,7 @@ export const ROLES: Role[] = [
     id: 'cleaner-app',
     title: 'Lead engineer, Cleaner mobile app',
     org: 'Keepers',
+    orgUrl: 'https://usekeepers.com/',
     dates: '2026',
     stack: 'React Native, iOS and Android',
     summary:
@@ -61,6 +67,7 @@ export const ROLES: Role[] = [
     id: 'saas-web',
     title: 'Frontend engineer, Keepers web app',
     org: 'Keepers',
+    orgUrl: 'https://usekeepers.com/',
     dates: '2026',
     stack: 'React, TypeScript, TanStack Query',
     summary:
@@ -75,6 +82,7 @@ export const ROLES: Role[] = [
       'Redesigned the dashboard, Jobs and Tasks, guest reviews, My Team and Integrations, and merged calendar and reservations into one view.',
       'Rebuilt property details across 12 areas with role-based editing and an audit trail.',
       'Built the Payment Center and Stripe-backed payment methods.',
+      'Used large language models (Claude Code) to automate routine engineering work, speeding up multi-file refactors, migrations and test coverage.',
       'Implemented RBAC gating, a "View as user" permission preview, CSV export with injection protection and shared Button, modal and status-color components.',
     ],
   },
@@ -115,6 +123,7 @@ export const PROJECTS: Project[] = [
     name: 'AI photo QA',
     file: 'photo_qa.app',
     kind: 'Keepers, mobile',
+    link: { label: 'Visit Keepers', href: 'https://usekeepers.com/' },
     stack: ['React Native', 'VLM', 'Vision Camera', 'i18n'],
     blurb:
       'Cleaners photograph each room; a vision-language model checks the photo against a reference. I built the capture guide, the "Checking photo" state and plain-language retake flows in three languages.',
@@ -163,7 +172,7 @@ export const SKILLS: SkillGroup[] = [
   },
   { device: 'APIs and services', items: ['REST and OpenAPI', 'Axios', 'Firebase Auth and push', 'Stripe', 'Twilio Voice'] },
   { device: 'Testing', items: ['Vitest', 'React Testing Library', 'Playwright', 'End-to-end testing'] },
-  { device: 'AI and data', items: ['VLM photo QA', 'Claude Code', 'Pandas', 'NumPy', 'Matplotlib', 'PostgreSQL'] },
-  { device: 'Security', items: ['RBAC', 'Zero Trust architecture', 'Ethical hacking', 'Wireshark'] },
+  { device: 'AI and automation', items: ['LLM workflow automation', 'VLM photo QA', 'Claude Code', 'Pandas', 'NumPy', 'Matplotlib', 'PostgreSQL'] },
+  { device: 'IT support and security', items: ['IT support and troubleshooting', 'RBAC', 'Zero Trust architecture', 'Ethical hacking', 'Wireshark'] },
   { device: 'Tools', items: ['Git and GitHub', 'Linear', 'Jira', 'Figma', 'Sentry', 'App Store and Google Play publishing'] },
 ];

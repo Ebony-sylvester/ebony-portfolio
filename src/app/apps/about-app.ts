@@ -26,15 +26,18 @@ import { WindowManager } from '../os/window-manager';
       <p class="pitch">{{ p.pitch }}</p>
       <dl>
         <dt>Looking for</dt>
-        <dd>My next software engineering role, frontend or mobile</dd>
+        <dd>{{ p.lookingFor }}</dd>
         <dt>Most recently</dt>
-        <dd>Keepers: led the cleaner mobile app and built the web dashboard</dd>
+        <dd>
+          <a [href]="p.company.url" target="_blank" rel="noopener">{{ p.company.name }}</a>: led the cleaner mobile
+          app and built the web dashboard
+        </dd>
+        <dt>AI automation</dt>
+        <dd>{{ p.automation }}</dd>
         <dt>Studied</dt>
         <dd>{{ edu.degree }}, {{ edu.school }} ({{ edu.date }})</dd>
         <dt>Based in</dt>
         <dd>{{ p.location }}</dd>
-        <dt>Learning</dt>
-        <dd>Angular, by building this desktop</dd>
       </dl>
     </div>
     <div class="actions">
@@ -42,9 +45,12 @@ import { WindowManager } from '../os/window-manager';
       <button type="button" class="btn" (click)="wm.open('projects')">Browse projects</button>
       @if (p.resumePdf; as href) {
         <a class="btn" [href]="href" target="_blank" rel="noopener">Open resume</a>
-      } @else {
-        <button type="button" class="btn" (click)="wm.open('contact')">Say hello</button>
       }
+      <span class="links">
+        <a class="btn" [href]="'mailto:' + p.email">Email</a>
+        <a class="btn" [href]="p.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" [href]="p.github" target="_blank" rel="noopener">GitHub</a>
+      </span>
     </div>
   `,
   styles: `
@@ -116,9 +122,9 @@ import { WindowManager } from '../os/window-manager';
       font-family: var(--font-ui);
       font-size: 13px;
       padding: 2px 8px;
-      background: var(--accent-soft);
-      border: 1px solid var(--accent);
-      color: #7a1f4b;
+      background: var(--chrome-hi);
+      border: 1px solid var(--mid);
+      color: var(--ink);
     }
     .pitch {
       margin-top: 18px;
@@ -154,6 +160,12 @@ import { WindowManager } from '../os/window-manager';
       flex-wrap: wrap;
       gap: 8px;
       padding: 10px 4px 4px;
+    }
+    .links {
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   `,
 })

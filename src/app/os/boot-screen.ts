@@ -10,7 +10,7 @@ const POST_LINES = [
   'Mobile devices: iOS, Android ...... 1,600+ cleaners',
   'Loading photo_qa.vlm ......... pass rate 52% > 92%',
   'Mounting C:\\Projects .......................... 5 found',
-  'Checking coffee level ...................... adequate',
+  'Loading it_support.sys, security.cfg ............ OK',
   '',
   'Starting EbonyOS...',
 ];
